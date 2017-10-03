@@ -1,0 +1,16 @@
+﻿@model string
+
+@if (Model.IndexOf("http") == -1)
+{
+    <div class="image">
+        <img id="image-partial" src="http://az806808.vo.msecnd.net/images/@Model"/>
+    </div>
+}
+else
+{
+    <div class="image">
+        <img id="image-partial" src="@Model" />
+    </div>
+}
+
+

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<div id="wrapper-main">
+    <div class="jumbotron">
+        <h1 id="title-main">Home of Incredible Poems!</h1>
+        <div>by Joseph D. Rees</div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" id="main-filter">
+            <button id="limerick-filter" class="btn btn-default" type="button">Limericks</button>
+            <button id="poem-filter" class="btn btn-default" type="button">Poems</button>
+        </div>
+
+    </div>
+    <div class="row" id="categories-main">
+        <div id="tile-area">
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                @*<div class="tile col-md-3"><div class="tile-text"><a href="/poems?category=@Model.ElementAt(i)">@Model.ElementAt(i)</a></div></div>
+                <div class="clear"></div>*@
+                
+                <div class="list-group col-md-10">
+                    <a href="/poems?category=@Model.ElementAt(i)" class="list-group-item category-links">
+                        <h4 class="list-group-item-heading tile-text">@Model.ElementAt(i)</h4>
+                    </a>
+                </div>
+                <div class="col-md-2"></div>
+            }
+        </div>
+        @*<div class="row">
+            <div id="smtile-area" class="hidden-sm hidden-md hidden-lg col-12-xs">
+                @for (int i = 0; i < Model.Count(); i++)
+            {
+                    <div class="smtile"><a href="/poems?category=@Model.ElementAt(i)">@Model.ElementAt(i)</a></div>
+                }
+            </div>
+        </div>*@
+
+    </div>
+
+</div>

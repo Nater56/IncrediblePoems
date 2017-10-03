@@ -1,0 +1,311 @@
+﻿body {
+    margin:25px;
+    color:#236B8E;
+    font-size:14px;
+    background-color:#009ACD;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0;
+
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+table, table a {
+    background-color:#fff;
+        color: #236B8E;
+    font-size:15px;
+    font-weight:700;
+}
+p a {
+    color:#fff;
+}
+footer {
+    color:#fff;
+    height:10%;
+}
+
+#Body {
+    min-width: 500px; 
+    min-height:400px;
+
+}
+
+#image-form {
+    display: inline-block;
+    margin: 0 115px 10px;
+}
+
+#image-form button {
+    margin-left:10px; 
+    margin-top:5px;
+}
+#loginForm {
+    color:#fff;
+}
+#image-preview .image  img{
+    width:45%;
+    margin: 0 115px 10px;
+}
+
+
+#modal-image-preview img {
+    width:45%;
+    position: absolute;
+    top: 35px;
+    right: 0;
+
+}
+
+.modal-content {
+    width:155%;
+
+    top:50%;
+
+}
+#Image{
+
+    display: none; 
+}
+
+#poem-image1 img {
+
+   
+    max-height:500px;
+    max-width:500px;
+    margin-bottom:10px;
+    float: right;
+
+}
+
+
+
+.tile  {  
+
+
+  margin:10px;
+ 
+
+}
+h4.list-group-item-heading.tile-text{
+    font-size:20px;
+    font-weight:700;
+    color:#236B8E;
+}
+
+.smtile{
+    font-weight:400;
+    font-size:25px;
+      background-image:url("Images/Tile.png");
+  width:80%;
+  height:25%;
+  margin:15px;
+  border-radius:5px;
+}
+a:hover{
+    text-decoration: none;
+}
+
+.tile:hover {
+    
+    opacity:.7;
+    color: #428bca;
+}
+
+#title-main {
+        color :#236B8E;  
+    font-family:'Agency FB';
+    font-weight:500;
+     text-shadow: 1px 1px 1px #fff;
+}
+ .jumbotron {
+     background-color: #ffffff;
+ }
+
+ .navbar-inverse {
+
+     background-color:#fff;
+ }
+
+ .navbar-inverse .navbar-brand {
+     font-size:20px
+ }
+
+  .navbar-inverse .navbar-brand:hover {
+     color :#236B8E;
+ }
+
+ .navbar-inverse .navbar-nav > li > a {
+     font-size:20px;
+ }
+
+  .navbar-inverse .navbar-nav > li > a:hover {
+     color :#236B8E;
+ }
+
+  #poem {
+      margin-top:40px;
+      background-color:#fff;
+      padding:15px;
+      font-weight:500;
+      
+  }
+
+
+  #poem h2{
+      margin-bottom:10px;
+      color: #236B8E;
+  }
+  h2 {
+      color:white;
+  }
+
+  .clear {
+      clear: right;
+  }
+
+  #categories-main{
+      min-height:500px;
+  }
+
+  .btn{
+      font-size:20px;
+      margin:5px;
+  }
+  h2, .h2 {
+    padding: 10px;
+}
+
+#wrapper-main {
+    background-color:#fff;
+        box-shadow: 1px 1px 62px -11px #000;
+        margin-top: 60px;
+}
+  
+
+.poem-list {
+    margin:10px;
+    box-shadow: 1px 1px 62px -11px #000;
+}
+
+.list-group {
+    
+    margin-left:20px;
+    margin-right:20px;
+}
+form {
+    color: #fff;
+}
+
+#poem-filter, #poem-filter text, #poem-filter b {
+    color:#fff;
+    font-size:15px;
+    margin:3px;
+}
+#search {
+    margin:3px;
+}
+#poem-body {
+    font-weight: 700;
+    font-size:15px;
+    min-height: 800px;
+}
+
+#limerick-filter{
+    color: #236B8E;
+}
+#poem-filter{
+    color: #236B8E;
+    font-size:20px;
+}
+
+.container.body-content #poem{
+    background-color:#fff;
+}
+
+.back-to-list a {
+   color: #fff;
+}
+
+/*Poem Nav section*/ 
+.poem-nav {
+    color: #fff;
+    line-height: 20px;
+    display: block;
+
+}
+.poem-nav:hover {
+    cursor: pointer;
+}
+#cat-poem-body {
+    color: white;
+
+    margin-left: 20px;
+    max-width: 450px;
+}
+
+#cat-poem-title {
+    margin-top: 40px;
+    margin-left: 20px;
+    color: #fff;
+
+}
+
+.hidden-poems {
+    height: 0;
+    display: none;
+}
+
+.poems-hidden {
+    display: none;
+}
+
+
+#edit-image-preview {
+    margin-left: 195px;
+    padding: 15px;
+}
+
+#edit-audio-preview {
+    margin-left: 195px;
+    padding: 15px;
+}
+
+#edit-image-toggle {
+    margin-left: 290px;
+    margin-bottom: 5px;
+}
+
+#edit-audio-toggle-div {
+    margin-left: 290px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 50%;
+}
+
+#audio-form {
+    margin-top: 15px;
+}
+#audio-form button {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+#preview-btn {
+    width: 10%;
+}

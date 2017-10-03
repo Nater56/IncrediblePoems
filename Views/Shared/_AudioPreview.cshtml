@@ -1,0 +1,20 @@
+﻿@model string
+
+@if (Model.IndexOf("http") == -1)
+{
+    <div class="audioP">
+        <audio controls>
+            <source id="audio-partial" src="http://az806808.vo.msecnd.net/audio/@Model" type="audio/mp4" codec="mp4"/>
+        </audio>
+    </div>
+}
+else
+{
+   <div class="audioP">
+    <audio controls>
+        <source id="audio-partial" src="@Model" type="audio/mp4" codec="mp4" />
+    </audio>
+</div> 
+}
+
+

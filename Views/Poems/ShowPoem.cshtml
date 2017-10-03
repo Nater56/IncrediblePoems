@@ -1,0 +1,61 @@
+﻿@model IncrediblePoems.Models.Poem
+
+<style>
+    #poem {
+        color: black !important;
+    }
+
+</style>
+
+<div id="poem">
+    <div class="row">
+        <h2 class="col-md-5 hidden-sm hidden-xs" style="color: black !important;">@ViewBag.Title</h2>
+    </div>
+    <div class="row">
+
+        <div class="col-md-5 hidden-sm hidden-xs" id="poem-body">
+
+@if (User.IsInRole("admin"))
+{
+    @Html.ActionLink("Edit", "Edit", new {id = @Model.Id})
+}
+            @if (Model.Audio != null)
+            {
+                Html.RenderPartial("_AudioPreview", Model.Audio);
+            }
+            @Html.Raw(Model.Body)
+            <p>
+                <div style="margin: 30px"> @Model.Author</div>
+            </p>
+        </div>
+        @if (Model.Image != null && !(Model.Image.IndexOf("undefined") > -1))
+        {
+            <div class="col-md-7 hidden-sm hidden-xs" id="poem-image1"><img id="poem1-img" class="img-thumbnail" src="http://az806808.vo.msecnd.net/images/@Model.Image" /></div>
+        }
+
+    </div>
+    <div class="row">
+        <h2 id="smH2" class="col-xs-12 col-sm-12 hidden-md hidden-lg">@ViewBag.Title</h2>
+    </div>
+    <div class="row">
+@if (Model.Image != null && !(Model.Image.IndexOf("undefined") > -1))
+{
+    <div class="col-xs-12 col-sm-12 hidden-md hidden-lg" id="poem-image1">
+        <img id="poem1-img" class="img-thumbnail" src="http://az806808.vo.msecnd.net/images/@Model.Image"/>
+    </div>
+}
+        <div class="col-xs-12 col-sm-12 hidden-md hidden-lg" >
+            @if (Model.Audio != null)
+            {
+                Html.RenderPartial("_AudioPreview", Model.Audio);
+            }
+        </div>
+
+        <div class="col-xs-12 col-sm-12  hidden-md hidden-lg" id="poem-body-sm">
+            @Html.Raw(Model.Body)
+            <p>
+                <div style="margin:30px"> @Model.Author</div>
+            </p>
+        </div>
+    </div>
+</div>

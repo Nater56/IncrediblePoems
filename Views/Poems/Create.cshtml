@@ -1,0 +1,110 @@
+﻿@model IncrediblePoems.Models.Poem
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div id="image-form">
+            <div class="control-label col-md-2" labelfor="Image"><b>Image</b></div>
+            <input id="image-data" class="col-md-10 form-control" type="file" name="Image" />
+            <button id="save-image" type="button" class="btn-default">Upload</button>
+        </div>
+        <div id="image-preview"></div>
+       
+        <div class="form-group">
+            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2"})
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.Body,  htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                <button type="button" class="btn btn-default btn-lg" id="preview-btn" data-toggle="modal" data-target="#preview-modal">
+                    Preview
+                </button>
+            </div>
+        </div>
+        <div style="display:none;">
+            <div id="image-preview"></div>
+            <div labelfor="Image">Image</div>
+            <input id="image-data" class="col-md-6" type="file" name="Image" />
+            <button id="save-image" class="btn-default">Upload</button>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+               
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })
+               
+            </div>
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Image, new {  @class="form-control hidden" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Author, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Author, new { @class = "form-control" })
+                
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<div class="modal fade" id="preview-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="preview-title-text"></h4>
+            </div>
+            <div class="modal-body" id="preview-body-text">
+                
+            </div>
+            <div id="modal-image-preview"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="back-to-list">
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/createPoem.js")
+}

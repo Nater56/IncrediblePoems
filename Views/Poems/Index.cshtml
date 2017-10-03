@@ -1,0 +1,171 @@
+﻿@model IEnumerable<IncrediblePoems.Models.Poem>
+
+@{
+    ViewBag.Title = "Index";
+    IncrediblePoems.Models.Poem displayPoem;
+    if (Model.Any())
+    {
+        displayPoem = Model.First();
+    }
+    else
+    {
+        displayPoem = new IncrediblePoems.Models.Poem();
+    }
+
+
+}
+
+<h2>Index</h2>
+
+<p>
+
+    @if (User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+
+</p>
+@using (Html.BeginForm("Search", "Poems", FormMethod.Get))
+{   <div id="poem-filter">
+        <b>Search by:</b>@Html.RadioButton("searchBy", "Title", true)<text> Title</text>
+        @Html.RadioButton("searchBy", "Category")<text>Category</text><br />
+        @Html.TextBox("Search")<input class="btn-default" id="search" type="submit" value="Search" /><button class="btn-default" type="button"><a class="btn-default" href="/poems">Reset</a></button>
+    </div>
+}
+@if (User.IsInRole("admin"))
+{
+    <table class="table poem-list">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Title, "ShowPoem", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @if (User.IsInRole("admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                        @Html.Raw(" | ")
+
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                        @Html.Raw(" | ")
+
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+}
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+@if (!User.IsInRole("admin"))
+{
+    <div class="col-md-3 hidded-sm hidden-xs">
+        @foreach (var poem in Model)
+        {
+            <div class="poem-nav">
+                <div id="@Html.DisplayFor(modelItem => poem.Id)t" onclick="ShowPoemById(@Html.DisplayFor(modelItem => poem.Id))">
+                    @Html.DisplayFor(modelItem => poem.Title)
+                </div>
+            </div>
+            <div class="hidden-poems">
+                <div id="@Html.DisplayFor(modelItem => poem.Id)b" data-body="@Html.DisplayFor(modelItem => poem.Id)">@Html.Raw(poem.Body)</div>
+                <div id="@Html.DisplayFor(modelItem => poem.Id)a">@Html.DisplayFor(modelItem => poem.Author)</div>
+                <div id="@Html.DisplayFor(modelItem => poem.Id)i">@Html.DisplayFor(modelItem => poem.Image)</div>
+                <div id="@poem.Id">
+                    @if (poem.Audio != null)
+                    {
+                        Html.RenderPartial("_AudioPreview", poem.Audio);
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    <div style="color: #fff;" class="col-xs-12 col-sm-12 hidden-md hidden-lg">
+        @foreach (var poem in Model)
+        {
+            <h4>
+                @Html.DisplayFor(modelItem => poem.Title)
+            </h4>
+            if (poem.Image != null && !(poem.Image.IndexOf("undefined") > -1))
+            {
+                <img class="img-thumbnail" src="http://az806808.vo.msecnd.net/images/@Html.DisplayFor(modelItem => poem.Image)" />
+            }
+            if (poem.Audio != null)
+            {
+                Html.RenderPartial("_AudioPreview", poem.Audio);
+            }
+            <br/>
+            <br/>
+            <div>
+                @Html.Raw(poem.Body)
+            </div>
+            <h4>@Html.DisplayFor(modelItem => poem.Author)</h4>
+            <br/>
+            <br/>
+        }
+    </div>
+
+    <div class="col-md-6 hidden-sm hidden-xs">
+        <h4 id="cat-poem-title">
+            @displayPoem.Title
+        </h4>
+        <div id="audio-poem-body">
+            @if (displayPoem.Audio != null)
+            {
+                Html.RenderPartial("_AudioPreview", displayPoem.Audio);
+            }
+        </div>
+        <div id="cat-poem-body">
+            @Html.Raw(@displayPoem.Body)
+            <br/>
+
+        </div>
+        <h5 style="color: #fff; margin-left: 20px;">
+            @displayPoem.Author
+        </h5>
+    </div>
+    if (@displayPoem.Image != null && !(displayPoem.Image.IndexOf("undefined") > -1))
+    {
+        <div class="col-md-3" style="min-height: 800px;">
+            <img style="width: 100%; float: right;" id="poem1-img" class="img-thumbnail" src="http://az806808.vo.msecnd.net/images/@displayPoem.Image" />
+        </div>
+    }
+
+    <div class="clearfix"></div>
+
+
+
+
+
+
+
+
+
+}

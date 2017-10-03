@@ -1,0 +1,170 @@
+﻿@model IncrediblePoems.Models.Poem
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Poem</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    if (Model.Image != null && (Model.Image.Length == 0 || Model.Image.IndexOf("undefined") > - 1))
+    {
+        <div id="image-form">
+            <div class="control-label col-md-2" labelfor="Image">
+                <b>Image</b>
+            </div>
+            <input id="image-data" class="col-md-10 form-control" type="file" name="Image" text="http://az806808.vo.msecnd.net/images/@Model.Image" />
+            <button id="save-image" type="button" class="btn-default">Upload</button>
+        </div>
+    }
+    else
+    {
+        if (Model.Image != null)
+        {
+            <div id="image-form" style="display: none">
+                <div class="control-label col-md-2" labelfor="Image">
+                    <b>Image</b>
+                </div>
+                <input id="image-data" class="col-md-10 form-control" type="file" name="Image" text="http://az806808.vo.msecnd.net/images/@Model.Image"/>
+                <button id="save-image" type="button" class="btn-default">Upload</button>
+            </div>
+            <div id="edit-image-preview">
+                @Html.Partial("_ImagePreview", Model.Image)
+            </div>
+            <div>
+                <button id="edit-image-toggle" type="button" class="btn-default">Edit Image</button>
+            </div>
+        }
+        else
+        {
+            <div id="image-form" style="display: none">
+                <div class="control-label col-md-2" labelfor="Image">
+                    <b>Image</b>
+                </div>
+                <input id="image-data" class="col-md-10 form-control" type="file" name="Image" text="http://az806808.vo.msecnd.net/images/@Model.Image" />
+                <button id="save-image" type="button" class="btn-default">Upload</button>
+            </div>
+        }
+
+    }
+
+    <div id="image-preview"></div>
+    if (Model.Audio != null)
+    {
+        <div id="audio-form" style="display: none">
+            <div class="control-label col-md-2" labelfor="Audio">
+                <b>Audio</b>
+            </div>
+            <input id="audio-data" class="col-md-10 form-control" type="file" name="Audio" text="http://az806808.vo.msecnd.net/audio/" />
+            <button id="save-audio" type="button" class="btn-default">Upload</button>
+        </div>
+        <div id="edit-audio-preview">
+            @Html.Partial("_AudioPreview", Model.Audio)
+        </div>
+        <div id="edit-audio-toggle-div">
+            <button id="edit-audio-toggle" type="button" class="btn-default">Edit Audio</button>
+        </div>
+    }
+    else
+    {
+        <div id="audio-form">
+            <div class="control-label col-md-2" labelfor="Audio">
+                <b>Audio</b>
+            </div>
+            <input id="audio-data" class="col-md-10 form-control" type="file" name="Audio" value="" />
+            <button id="save-audio" type="button" class="btn-default">Upload</button>
+        </div>
+    }
+
+    <div id="audio-preview"></div>
+    <div class="form-group col-md-12">
+        @Html.LabelFor(model => model.Body, htmlAttributes: new {@class = "control-label col-md-2"})
+        <div>
+            @Html.TextAreaFor(model => model.Body, htmlAttributes: new {@class = "form-control"})
+            @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
+            <button type="button" class="btn btn-default btn-lg" id="preview-btn" data-toggle="modal" data-target="#preview-modal">
+                Preview
+            </button>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.Image, new {htmlAttributes = new {@class = "form-control poems-hidden"}})
+    </div>
+    <div class="form-group col-md-12">
+        @Html.LabelFor(model => model.Audio, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.Audio, new {htmlAttributes = new {@class = "form-control poems-hidden"}})
+    </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div>
+                @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div>
+                @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    <div class="form-group col-md-12">
+        @Html.LabelFor(model => model.Author, htmlAttributes: new {@class = "control-label col-md-2"})
+        <div>
+            @Html.EditorFor(model => model.Author, new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.Author, "", new {@class = "text-danger"})
+        </div>
+    </div>
+    <div style="margin-top: 25px;">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+}
+        <div class="modal fade" id="preview-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="preview-title-text"></h4>
+                    </div>
+                    <div id="modal-audio-preview"></div>
+                    <div class="modal-body" id="preview-body-text">
+
+                    </div>
+                    <div id="modal-image-preview"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="back-to-list">
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/Scripts/editPoem.js")
+        }
